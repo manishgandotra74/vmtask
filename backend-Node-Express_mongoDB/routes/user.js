@@ -12,7 +12,7 @@ router.post("/authenticate", function (req, res) {
     email: req.body.email, password: req.body.password
   }).then(user => {
     if (user.length > 0) {
-      var token = jwt.sign({ token: { email: user[0].email, role: user[0].role } }, 'usertoken', { expiresIn: 3000 });
+      var token = jwt.sign({ token: { email: user[0].email, role: user[0].role } }, 'usertoken', { expiresIn: 300 });
       let response = [{
         email: user[0].email,
         role: user[0].role,

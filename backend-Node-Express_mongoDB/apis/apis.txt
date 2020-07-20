@@ -1,0 +1,52 @@
+1. Register user Api POST request 
+For User 
+http://localhost:4000/user/register-user?name=User&email=user@gmail.com&password=123456
+For Admin
+http://localhost:4000/user/register-user?name=Admin&email=admin@gmail.com&password=123456&role=ADMIN
+
+2. Login user API POST Request 
+
+http://localhost:4000/user/authenticate?email=admin@gmail.com&password=123456
+    A token will be generated which will be needed in other api to access and must be passed this way in headers with other apis
+    headers: {authorization : auth_token } 
+
+3. Add Topic POST request   
+http://localhost:4000/topic/addtopic/?name=Topic_name1
+
+In formData also pass image like {key : file , type : file , value :"Upload FIle here " }
+
+4. Get All topic GET Request 
+http://localhost:4000/topic/gettopics/0
+
+IN all cases 0 
+
+5. Get topic by id GET Request 
+http://localhost:4000/topic/gettopics/1
+
+In particular topic provide particular id 
+
+6. Add Article API
+http://localhost:4000/article/addarticle?title=Titlee134&topic=1&content=content1&isfeatured=true&tags=["hero","super","poweres"]
+In formData also pass image like {key : file , type : file , value :"Upload FIle here " }
+
+7. Update Article API
+http://localhost:4000/article/updatearticle?title=Titlee134&topic=1&content=content1&isfeatured=true&tags=["hero","super-natural"]&articleid=9
+
+In formData also pass image like {key : file , type : file , value :"Upload FIle here " }
+
+8. Get Article by topic id 
+
+http://localhost:4000/article/getarticlebytopicid/1
+
+9. Get Article by Article id
+
+http://localhost:4000/article/getArticleByid/2
+
+10. Get all articles API 
+http://localhost:4000/article/getArticles/2
+if id = 1 Ascending order
+else if id = 2 Descending order
+else Normal order
+
+11. Search article and get data with matching tags
+http://localhost:4000/article/fetcharticles/Titlee7

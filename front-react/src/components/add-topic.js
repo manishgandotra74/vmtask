@@ -58,7 +58,7 @@ function AddTopic(props) {
       formData.append('file', images);
       axios({
         method: 'post',
-        url: 'http://localhost:4000/upload/uploadpicture',
+        url: 'https://vast-citadel-98032.herokuapp.com/upload/uploadpicture',
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' }
       })
@@ -89,6 +89,7 @@ function AddTopic(props) {
       <Button  variant="contained" color="secondary" onClick={()=>props.history.push('/topic')} style={{ height: "40px" }}> Back </Button>&nbsp;
 
       Add Topic </Toolbar>
+      
         <div style={{ marginLeft: "25%", marginRight: "25%", marginTop: "100px" }}>
           <TextField
             error={topicName === '' ? true : false}

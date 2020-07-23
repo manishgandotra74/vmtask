@@ -11,6 +11,7 @@ function App(props) {
   if (data === null ){
     props.history.push('/login')
   }else {
+    props.history.push('/topic')
 
   }
 // if ( JSON.parse(localStorage.getItem('user')) && JSON.parse(localStorage.getItem('user')).message !== "Success"){

@@ -41,15 +41,15 @@ const useStyles = makeStyles({
     minWidth: 700,
   },
 });
- function TopicList(props) {
- const [Topic, setTopic] = useState([]);
-    const classes = useStyles();
-  useEffect(() => { 
+function TopicList(props) {
+  const [Topic, setTopic] = useState([]);
+  const classes = useStyles();
+  useEffect(() => {
 
-    props.getTopics(0).then(data =>{
-    
-      if (data && data.message){
-        if (data.message && data.message !== "Unauthorized"){
+    props.getTopics(0).then(data => {
+
+      if (data && data.message) {
+        if (data.message && data.message !== "Unauthorized") {
           setTopic(data.message)
 
         }
@@ -58,54 +58,61 @@ const useStyles = makeStyles({
     });
   }, [])
 
-  
+
   const onSubmit = async (e) => {
     props.history.push('/add-topic')
   }
-  const viewTopic =(id)=>{
-    props.history.push('/view-topic/'+id )
+  const viewTopic = (id) => {
+    props.history.push('/view-topic/' + id)
   }
-  const viewArticle=(id)=>{
-    props.history.push('/article/'+id )
+  const viewArticle = (id) => {
+    props.history.push('/article/' + id)
+  }
+  const logout = () => {
+    console.log('2');
+    localStorage.clear();
+    props.history.push('/login')
+
   }
   console.log(Topic);
   return (
     <div>
-  <Toolbar style ={{background:"#C0C0C0"}}>Topics
-  <Button  onClick={onSubmit} variant="contained" color="secondary" style={{marginLeft:"85%",  height: "40px" }}> Add Topic </Button>
-  </Toolbar>
-  <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Image</StyledTableCell>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell>View&nbsp;Topic</StyledTableCell>
-            <StyledTableCell>Articles&nbsp;List</StyledTableCell>
-            {/* <StyledTableCell>Protein&nbsp;(g)</StyledTableCell> */}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {Topic ? Topic.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-             <img style ={{height:"60px"}} src ={row.image} />   
-              </StyledTableCell>
-              <StyledTableCell>{row.name}</StyledTableCell>
-              <StyledTableCell>
-              <a onClick={(id)=>viewTopic(row._id)}>View</a>
-              </StyledTableCell>
-              <StyledTableCell>
-              <a onClick={(id)=>viewArticle(row._id)}>View Articles</a>
-              </StyledTableCell>
-            </StyledTableRow>
-          )):[]}
-        </TableBody>
-      </Table>
-    </TableContainer>
- 
+      <Toolbar style={{ background: "#C0C0C0" }}>Topics
+  <Button onClick={onSubmit} variant="contained" color="secondary" style={{ marginLeft: "80%", height: "40px" }}> Add Topic </Button>&nbsp;&nbsp;
+  <Button variant="contained" color="secondary" onClick={logout} style={{ height: "40px" }}> Logout </Button>
+      </Toolbar>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Image</StyledTableCell>
+              <StyledTableCell>Name</StyledTableCell>
+              <StyledTableCell>View&nbsp;Topic</StyledTableCell>
+              <StyledTableCell>Articles&nbsp;List</StyledTableCell>
+              {/* <StyledTableCell>Protein&nbsp;(g)</StyledTableCell> */}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {Topic ? Topic.map((row) => (
+              <StyledTableRow key={row.name}>
+                <StyledTableCell component="th" scope="row">
+                  <img style={{ height: "60px" }} src={row.image} />
+                </StyledTableCell>
+                <StyledTableCell>{row.name}</StyledTableCell>
+                <StyledTableCell>
+                  <a onClick={(id) => viewTopic(row._id)}>View</a>
+                </StyledTableCell>
+                <StyledTableCell>
+                  <a onClick={(id) => viewArticle(row._id)}>View Articles</a>
+                </StyledTableCell>
+              </StyledTableRow>
+            )) : []}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
     </div>
-   );
+  );
 }
 
 TopicList.propTypes = {

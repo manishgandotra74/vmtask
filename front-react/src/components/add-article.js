@@ -92,7 +92,7 @@ function AddArticle(props) {
       formData.append('file', images);
       axios({
         method: 'post',
-        url: 'http://localhost:4000/upload/uploadpicture',
+        url: 'https://vast-citadel-98032.herokuapp.com/upload/uploadpicture',
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' }
       })
